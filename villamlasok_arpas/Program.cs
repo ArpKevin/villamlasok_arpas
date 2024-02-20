@@ -36,7 +36,7 @@
             Console.WriteLine($"{HanyVillamlas(villamlasok)} alkalommal villámlott.");
 
             Console.WriteLine("\n6. feladat:");
-            Console.WriteLine($"{ElsoIlyen(villamlasok).Nap+1}. nap volt 200 alatti villámlás először.");
+            Console.WriteLine($"{ElsoIlyen(villamlasok).Nap}. nap volt 200 alatti villámlás először.");
 
 
             Console.WriteLine("\n7. feladat:");
@@ -44,32 +44,19 @@
 
             if (x != null)
             {
-                Console.WriteLine($"Az {x.Nap+1}. nap volt az első nap, amikor nem volt villámlás");
+                Console.WriteLine($"Az {x.Nap}. nap volt az első nap, amikor nem volt villámlás");
             }
 
             Console.ReadKey();
         }
 
         static void LegtobbetVillamlott(List<Villam> l) {
+
             var f3 = l.MaxBy(e => e.Orak.Max());
-            var legtobbVillamOra = f3.Orak[0];
-            var legtobbVillamOraIndex = 0;
+            var hely = f3.Orak.IndexOf(f3.Orak.Max());
 
-            foreach (var item in f3.Orak)
-            {
+            Console.WriteLine($"A {f3.Nap} napon volt a legtöbb villámlás, a(z) {hely + 1}. órában");
 
-            }
-
-            for (int i = 0; i < f3.Orak.Count; i++)
-            {
-                if (f3.Orak[i] > legtobbVillamOra)
-                {
-                    legtobbVillamOra = f3.Orak[i];
-                    legtobbVillamOraIndex = i;
-                }
-            }
-
-            Console.WriteLine($"A {f3.Nap} napon volt a legtöbb villámlás, a(z) {legtobbVillamOraIndex + 1}. órában");
         }
         
         static void VillamlasVoltE(List<Villam> l)
@@ -88,6 +75,13 @@
                         result.Add("null");
                     }
                 }
+            }
+
+
+            foreach (var item in l)
+            {
+                string a = Convert.ToString(l.IndexOf(item));
+                Console.WriteLine(a);
             }
 
             using var sw = new StreamWriter(@"..\..\..\src\ujFajl.txt");
